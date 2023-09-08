@@ -21,7 +21,10 @@ public class HomePage {
         return new SearchResultPage(driver);
     }
     public DealsPage clickTodayDeals(){
-        driver.findElement(todayDealsButton).click();
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        WebElement element = (WebElement) jsExecutor.executeScript("return [...document.querySelectorAll('a')].find(a => a.textContent.includes(\"Today's Deals\"));");
+        element.click();
+
         return new DealsPage(driver);
     }
 }
